@@ -1,0 +1,27 @@
+.nav {
+  margin: 1rem;
+  text-align: center;
+}
+
+.nav__link {
+  color: #295867;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.15s all;
+}
+
+.nav__link:visited {
+  color: #295867;
+}
+
+.nav__link:hover {
+  color: white;
+  background-color: #295867;
+  text-decoration: none;
+}
+
+.nav__link:active {
+  color: rgb(153, 153, 153);
+}

@@ -1,0 +1,61 @@
+.travel {
+  padding: 1rem;
+  width: 300px;
+  min-height: 175px;
+  background-color: #fff;
+  color: #295867;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px #78695e;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.travel__button {
+  display: block;
+  padding: 0.25rem;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: #83b6af;
+  transition: all 0.15s;
+  outline: none;
+}
+
+.travel__button:disabled {
+  opacity: 0.6;
+}
+
+.travel__button:focus {
+  color: white;
+  background-color: #295867;
+}
+
+.travel__button:hover {
+  color: white;
+  background-color: #295867;
+}
+
+.travel__button:active {
+  color: white;
+  background-color: #295867;
+}
+
+.travel__button svg {
+  font-size: 1.25rem;
+}
+
+.travel > * {
+  margin-bottom: 0.25rem;
+}
+
+.travel__review {
+  font-weight: normal;
+}
+
+.travel__title {
+  font-weight: bold;
+}
+
+.travel__date {
+}
