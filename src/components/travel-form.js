@@ -9,6 +9,7 @@ function TravelForm(props) {
   if (initialState.city === undefined) initialState.city = "";
   if (initialState.monthVisited === undefined) initialState.monthVisited = "";
   if (initialState.yearVisited === undefined) initialState.yearVisited = 2020;
+  if (initialState.tags === undefined) initialState.tags = [];
   if (initialState.rating === undefined) initialState.rating = 5;
   if (initialState.review === undefined) initialState.review = "";
   if (initialState.visits === undefined) initialState.visits = 0;
@@ -17,6 +18,7 @@ function TravelForm(props) {
   const [city, setCity] = useState(initialState.city);
   const [monthVisited, setMonthVisited] = useState(initialState.monthVisited);
   const [yearVisited, setYearVisited] = useState(initialState.yearVisited);
+  const [tags, setTags] = useState(initialState.tags.join(","));
   const [rating, setRating] = useState(initialState.rating);
   const [review, setReview] = useState(initialState.review);
   const [visits, setVisits] = useState(initialState.visits);
@@ -34,6 +36,9 @@ function TravelForm(props) {
   const onYearVisitedChange = (event) => {
     setYearVisited(event.target.value);
   };
+  const onTagsChange = (event) => {
+    setTags(event.target.value);
+  };
   const onRatingChange = (event) => {
     setRating(event.target.value);
   };
@@ -46,7 +51,19 @@ function TravelForm(props) {
 
   const onTravelSumbit = async (event) => {
     event.preventDefault();
-    onSubmit(country, city, monthVisited, yearVisited, rating, review, visits);
+
+    const parts = tags.split(", ");
+    const partsTrimmed = parts.map((string) => string.trim());
+    const filteredParts = partsTrimmed.filter((string) => {
+      if (string === "") {
+        setErrorMessage("There was a problem entering your activities. Please try again.");
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    onSubmit(country, city, monthVisited, yearVisited, filteredParts, rating, review, visits);
   };
 
   return (
@@ -56,29 +73,6 @@ function TravelForm(props) {
       {message && <p className="travel-form__message">{message}</p>}
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <fieldset className="travel-form__controls" disabled={isSaving}>
-        <label className="travel-form__label">Country:</label>
-        <input
-          className="travel-form__input"
-          type="text"
-          value={country}
-          onChange={onCountryChange}
-        />
-        <label className="travel-form__label">City:</label>
-        <input className="travel-form__input" type="text" value={city} onChange={onCityChange} />
-        <label className="travel-form__label">Month:</label>
-        <input
-          className="travel-form__input"
-          type="text"
-          value={monthVisited}
-          onChange={onMonthVisitedChange}
-        />
-        <label className="travel-form__label">Year:</label>
-        <input
-          className="travel-form__input"
-          type="text"
-          value={yearVisited}
-          onChange={onYearVisitedChange}
-        />
         <label className="travel-form__label">Rating:</label>
         <input
           className="travel-form__input"
@@ -86,17 +80,59 @@ function TravelForm(props) {
           value={rating}
           onChange={onRatingChange}
         />
+        <label className="travel-form__label">Country:</label>
+        <input
+          className="travel-form__input"
+          type="text"
+          value={country}
+          placeholder="Country"
+          onChange={onCountryChange}
+        />
+        <label className="travel-form__label">City:</label>
+        <input
+          className="travel-form__input"
+          type="text"
+          value={city}
+          placeholder="City"
+          onChange={onCityChange}
+        />
+        <label className="travel-form__label">Month:</label>
+        <input
+          className="travel-form__input"
+          type="text"
+          value={monthVisited}
+          placeholder="Month i.e. July"
+          onChange={onMonthVisitedChange}
+        />
+        <label className="travel-form__label">Year:</label>
+        <input
+          className="travel-form__input"
+          type="text"
+          value={yearVisited}
+          placeholder="Year i.e. 2020"
+          onChange={onYearVisitedChange}
+        />
+        <label className="travel-form__label">Activities: </label>
+        <input
+          className="travel-form__input"
+          type="text"
+          value={tags}
+          placeholder="Add activities here"
+          onChange={onTagsChange}
+        />
+
         <label className="travel-form__label">Review:</label>
         <input
           className="travel-form__input"
           type="text"
           value={review}
+          placeholder="Add review here"
           onChange={onReviewChange}
         />
         <label className="travel-form__label">Number of Visits:</label>
         <input
           className="travel-form__input"
-          type="text"
+          type="number"
           value={visits}
           onChange={onVisitsChange}
         />

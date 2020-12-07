@@ -1,7 +1,8 @@
 .travel {
   padding: 1rem;
-  width: 300px;
+  width: 400px;
   min-height: 175px;
+  margin: 0.5rem;
   background-color: #fff;
   color: #295867;
   border-radius: 10px;
@@ -49,13 +50,11 @@
   margin-bottom: 0.25rem;
 }
 
-.travel__review {
+.travel__input {
   font-weight: normal;
+  line-height: 1.6rem;
 }
 
 .travel__title {
   font-weight: bold;
-}
-
-.travel__date {
 }

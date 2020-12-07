@@ -15,7 +15,7 @@ function TravelListing(props) {
 
   return (
     <div className="travel-container">
-      <h1>Travel</h1>
+      <h1>My Travel Journal</h1>
       {isLoading && (
         <LoadingSpinner
           size="50px"

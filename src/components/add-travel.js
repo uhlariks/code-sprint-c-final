@@ -12,11 +12,12 @@ function AddTravel(props) {
     city,
     monthVisited,
     yearVisited,
+    tags,
     rating,
     review,
     visits
   ) => {
-    saveTravel({ country, city, monthVisited, yearVisited, rating, review, visits }, userId);
+    saveTravel({ country, city, monthVisited, yearVisited, tags, rating, review, visits }, userId);
   };
 
   return (

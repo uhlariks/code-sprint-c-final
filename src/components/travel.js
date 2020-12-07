@@ -7,7 +7,7 @@ import "./travel.css";
 
 function Travel(props) {
   const { id, data, userId } = props;
-  const { country, city, monthVisited, yearVisited, rating, review, visits } = data;
+  const { country, city, monthVisited, yearVisited, tags, rating, review, visits } = data;
 
   const ratingString = "★".repeat(rating) + "☆".repeat(5 - rating);
 
@@ -31,15 +31,18 @@ function Travel(props) {
   return (
     <div className="travel">
       <div className="travel__contents">
+        <div className="travel__rating">{ratingString}</div>
         <div className="travel__title">
           {city}, {country}
         </div>
-        <div className="travel__title">
+        <div className="travel__input">
           Date: {monthVisited}, {yearVisited}
         </div>
-        <div className="travel__rating">{ratingString}</div>
-        <div className="travel__review">Review: {review ? review : "No review saved."}</div>
-        <div className="travel__year">Number of Visits: {visits}</div>
+        <div className="travel__input">
+          Activities: {tags ? tags.join(", ") : "No activities saved"}
+        </div>
+        <div className="travel__input">Review: {review ? review : "No review saved"}</div>
+        <div className="travel__input">Number of Visits: {visits}</div>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </div>
       <div>
