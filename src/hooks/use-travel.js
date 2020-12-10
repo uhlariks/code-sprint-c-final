@@ -32,7 +32,7 @@ function useTravel(userId, travelId) {
     }
 
     getTravel();
-  }, [travelId]);
+  }, [travelId, userId]);
 
   return [travelData, isLoading, errorMessage];
 }

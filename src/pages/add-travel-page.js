@@ -6,7 +6,7 @@ function AddTravelPage(props) {
   return (
     <main>
       <Helmet>
-        <title>Add</title>
+        <title>Add Travel</title>
       </Helmet>
       <AddTravel {...props} />
     </main>

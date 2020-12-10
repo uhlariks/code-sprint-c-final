@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ErrorMessage from "./error-message";
 import { provider, auth } from "../data/firebase";
 import "./account-info.css";
@@ -40,7 +40,8 @@ function AccountInfo(props) {
     const { displayName } = user;
     contents = (
       <>
-        <p>Welcome back, {displayName}! You can log out below.</p>
+        <h2>Welcome back, {displayName}!</h2>
+        <p>You can log out below.</p>
         <button className="login-form__button" onClick={signOut} disabled={isLoading}>
           {isLoading ? "Logging Out..." : "Log Out"}
         </button>
@@ -62,9 +63,8 @@ function AccountInfo(props) {
 
   return (
     <div className="account-container">
-      <h1>Account Info</h1>
+      <h1>Account Information</h1>
       <div className="login-form">
-        <h2>Social Login</h2>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {contents}
       </div>

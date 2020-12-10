@@ -10,6 +10,7 @@ function TravelForm(props) {
   if (initialState.monthVisited === undefined) initialState.monthVisited = "";
   if (initialState.yearVisited === undefined) initialState.yearVisited = 2020;
   if (initialState.tags === undefined) initialState.tags = [];
+  if (initialState.hasHappened === undefined) initialState.hasHappened = false;
   if (initialState.rating === undefined) initialState.rating = 5;
   if (initialState.review === undefined) initialState.review = "";
   if (initialState.visits === undefined) initialState.visits = 0;
@@ -18,7 +19,8 @@ function TravelForm(props) {
   const [city, setCity] = useState(initialState.city);
   const [monthVisited, setMonthVisited] = useState(initialState.monthVisited);
   const [yearVisited, setYearVisited] = useState(initialState.yearVisited);
-  const [tags, setTags] = useState(initialState.tags.join(","));
+  const [tags, setTags] = useState(initialState.tags.join(", "));
+  const [hasHappened, setHasHappened] = useState(initialState.hasHappened);
   const [rating, setRating] = useState(initialState.rating);
   const [review, setReview] = useState(initialState.review);
   const [visits, setVisits] = useState(initialState.visits);
@@ -39,6 +41,11 @@ function TravelForm(props) {
   const onTagsChange = (event) => {
     setTags(event.target.value);
   };
+
+  const onHasHappenedChange = (event) => {
+    setHasHappened(event.target.checked);
+  };
+
   const onRatingChange = (event) => {
     setRating(event.target.value);
   };
@@ -63,7 +70,17 @@ function TravelForm(props) {
       }
     });
 
-    onSubmit(country, city, monthVisited, yearVisited, filteredParts, rating, review, visits);
+    onSubmit(
+      country,
+      city,
+      monthVisited,
+      yearVisited,
+      filteredParts,
+      hasHappened,
+      rating,
+      review,
+      visits
+    );
   };
 
   return (
@@ -73,13 +90,6 @@ function TravelForm(props) {
       {message && <p className="travel-form__message">{message}</p>}
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <fieldset className="travel-form__controls" disabled={isSaving}>
-        <label className="travel-form__label">Rating:</label>
-        <input
-          className="travel-form__input"
-          type="number"
-          value={rating}
-          onChange={onRatingChange}
-        />
         <label className="travel-form__label">Country:</label>
         <input
           className="travel-form__input"
@@ -120,22 +130,40 @@ function TravelForm(props) {
           placeholder="Add activities here"
           onChange={onTagsChange}
         />
+        <label className="travel-form__label">Has Already Happened? </label>
+        <input
+          className="travel-form__input"
+          type="checkbox"
+          checked={hasHappened}
+          onChange={onHasHappenedChange}
+        />
+        {hasHappened && (
+          <>
+            <label className="travel-form__label">Review:</label>
+            <input
+              className="travel-form__input"
+              type="text"
+              value={review}
+              placeholder="Add review here"
+              onChange={onReviewChange}
+            />
+            <label className="travel-form__label">Number of Visits:</label>
+            <input
+              className="travel-form__input"
+              type="number"
+              value={visits}
+              onChange={onVisitsChange}
+            />
+            <label className="travel-form__label">Rating:</label>
+            <input
+              className="travel-form__input"
+              type="number"
+              value={rating}
+              onChange={onRatingChange}
+            />
+          </>
+        )}
 
-        <label className="travel-form__label">Review:</label>
-        <input
-          className="travel-form__input"
-          type="text"
-          value={review}
-          placeholder="Add review here"
-          onChange={onReviewChange}
-        />
-        <label className="travel-form__label">Number of Visits:</label>
-        <input
-          className="travel-form__input"
-          type="number"
-          value={visits}
-          onChange={onVisitsChange}
-        />
         <input
           className="travel-form__submit"
           type="submit"

@@ -21,3 +21,15 @@
 .travel-list {
   height: 100%;
 }
+
+.travel-filter {
+  background-color: #295867;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
+.travel-filter:hover {
+  background-color: #83b6af;
+}

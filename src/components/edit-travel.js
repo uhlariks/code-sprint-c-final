@@ -19,12 +19,13 @@ function EditTravel(props) {
     monthVisited,
     yearVisited,
     tags,
+    hasHappened,
     rating,
     review,
     visits
   ) => {
     saveTravel(
-      { rating, country, city, monthVisited, yearVisited, tags, review, visits },
+      { country, city, monthVisited, yearVisited, tags, hasHappened, rating, review, visits },
       userId,
       travelId
     );

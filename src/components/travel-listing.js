@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LoadingSpinner from "./loading-spinner";
 import ErrorMessage from "./error-message";
 import Travel from "./travel";
@@ -11,11 +11,21 @@ import "./travel-listing.css";
 
 function TravelListing(props) {
   const userId = props.user.uid;
-  const [travel, isLoading, errorMessage] = useAllTravel(userId);
+  const [filterTravel, setFilterTravel] = useState("showall");
+  const [travel, isLoading, errorMessage] = useAllTravel(userId, filterTravel);
+
+  const onFilterTravelChange = (event) => {
+    setFilterTravel(event.target.value);
+  };
 
   return (
     <div className="travel-container">
       <h1>My Travel Journal</h1>
+      <select className="travel-filter" value={filterTravel} onChange={onFilterTravelChange}>
+        <option value="showall">All Travel</option>
+        <option value="pasttravel">Past Trips</option>
+        <option value="futuretravel">Future Trips</option>
+      </select>
       {isLoading && (
         <LoadingSpinner
           size="50px"

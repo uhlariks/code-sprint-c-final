@@ -41,6 +41,7 @@ function Travel(props) {
         <div className="travel__input">
           Activities: {tags ? tags.join(", ") : "No activities saved"}
         </div>
+
         <div className="travel__input">Review: {review ? review : "No review saved"}</div>
         <div className="travel__input">Number of Visits: {visits}</div>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

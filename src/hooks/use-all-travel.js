@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { usersCollection } from "../data/firebase";
 
-function useAllTravel(userId) {
+function useAllTravel(userId, filterTravel) {
   const [travel, setTravel] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,14 +21,21 @@ function useAllTravel(userId) {
       console.error(error);
     };
 
-    const unsubscribe = usersCollection
-      .doc(userId)
-      .collection("travel")
-      .orderBy("rating", "desc")
-      .onSnapshot(onNext, onError);
+    const travelref = usersCollection.doc(userId).collection("travel");
+    let unsubscribe;
+    if (filterTravel === "showall") {
+      unsubscribe = travelref.orderBy("rating", "desc").onSnapshot(onNext, onError);
+    } else if (filterTravel === "pasttravel") {
+      unsubscribe = travelref.orderBy("hasHappened").onSnapshot(onNext, onError);
+    } else if (filterTravel === "futuretravel") {
+      unsubscribe = travelref
+        //.where("country", "==", "Italy")
+        .orderBy("rating", "asc")
+        .onSnapshot(onNext, onError);
+    }
 
     return unsubscribe;
-  }, []);
+  }, [userId, filterTravel]);
 
   return [travel, isLoading, errorMessage];
 }
