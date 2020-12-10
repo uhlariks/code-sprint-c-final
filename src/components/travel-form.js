@@ -130,7 +130,7 @@ function TravelForm(props) {
           placeholder="Add activities here"
           onChange={onTagsChange}
         />
-        <label className="travel-form__label">Has Already Happened? </label>
+        <label className="travel-form__label">Past Travel? </label>
         <input
           className="travel-form__input"
           type="checkbox"
