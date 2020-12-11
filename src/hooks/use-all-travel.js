@@ -26,12 +26,9 @@ function useAllTravel(userId, filterTravel) {
     if (filterTravel === "showall") {
       unsubscribe = travelref.orderBy("rating", "desc").onSnapshot(onNext, onError);
     } else if (filterTravel === "pasttravel") {
-      unsubscribe = travelref.orderBy("hasHappened").onSnapshot(onNext, onError);
+      unsubscribe = travelref.where("hasHappened", "==", true).onSnapshot(onNext, onError);
     } else if (filterTravel === "futuretravel") {
-      unsubscribe = travelref
-        //.where("country", "==", "Italy")
-        .orderBy("rating", "asc")
-        .onSnapshot(onNext, onError);
+      unsubscribe = travelref.where("hasHappened", "!=", true).onSnapshot(onNext, onError);
     }
 
     return unsubscribe;

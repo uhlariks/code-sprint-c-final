@@ -58,3 +58,8 @@
 .travel__title {
   font-weight: bold;
 }
+
+.travel__future {
+  font-style: italic;
+  color: #83b6af;
+}

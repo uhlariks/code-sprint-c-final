@@ -7,7 +7,17 @@ import "./travel.css";
 
 function Travel(props) {
   const { id, data, userId } = props;
-  const { country, city, monthVisited, yearVisited, tags, rating, review, visits } = data;
+  const {
+    country,
+    city,
+    monthVisited,
+    yearVisited,
+    tags,
+    hasHappened,
+    rating,
+    review,
+    visits,
+  } = data;
 
   const ratingString = "★".repeat(rating) + "☆".repeat(5 - rating);
 
@@ -28,6 +38,22 @@ function Travel(props) {
     }
   };
 
+  let ratingMarkup;
+  if (hasHappened === true) {
+    ratingMarkup = (
+      <div className="travel__contents">
+        <div className="travel__input">Number of Visits: {visits}</div>
+        <div className="travel__input">Review: {review ? review : "No review saved"}</div>
+      </div>
+    );
+  } else {
+    ratingMarkup = (
+      <div className="travel__contents">
+        <div className="travel__future">Planned Future Travel</div>
+      </div>
+    );
+  }
+
   return (
     <div className="travel">
       <div className="travel__contents">
@@ -41,9 +67,7 @@ function Travel(props) {
         <div className="travel__input">
           Activities: {tags ? tags.join(", ") : "No activities saved"}
         </div>
-
-        <div className="travel__input">Review: {review ? review : "No review saved"}</div>
-        <div className="travel__input">Number of Visits: {visits}</div>
+        {ratingMarkup}
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </div>
       <div>

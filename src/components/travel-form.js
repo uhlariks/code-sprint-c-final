@@ -11,7 +11,7 @@ function TravelForm(props) {
   if (initialState.yearVisited === undefined) initialState.yearVisited = 2020;
   if (initialState.tags === undefined) initialState.tags = [];
   if (initialState.hasHappened === undefined) initialState.hasHappened = false;
-  if (initialState.rating === undefined) initialState.rating = 5;
+  if (initialState.rating === undefined) initialState.rating = 0;
   if (initialState.review === undefined) initialState.review = "";
   if (initialState.visits === undefined) initialState.visits = 0;
 
