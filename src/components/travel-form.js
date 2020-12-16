@@ -59,11 +59,10 @@ function TravelForm(props) {
   const onTravelSumbit = async (event) => {
     event.preventDefault();
 
-    const parts = tags.split(", ");
+    const parts = tags.split(",");
     const partsTrimmed = parts.map((string) => string.trim());
     const filteredParts = partsTrimmed.filter((string) => {
-      if (string === null) {
-        setErrorMessage("There was a problem entering your activities. Please try again.");
+      if (string === "") {
         return false;
       } else {
         return true;
