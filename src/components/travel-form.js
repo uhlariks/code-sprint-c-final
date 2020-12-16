@@ -62,7 +62,7 @@ function TravelForm(props) {
     const parts = tags.split(", ");
     const partsTrimmed = parts.map((string) => string.trim());
     const filteredParts = partsTrimmed.filter((string) => {
-      if (string === "") {
+      if (string === null) {
         setErrorMessage("There was a problem entering your activities. Please try again.");
         return false;
       } else {
@@ -127,7 +127,7 @@ function TravelForm(props) {
           className="travel-form__input"
           type="text"
           value={tags}
-          placeholder="Add activities here"
+          placeholder="Add activities or leave blank"
           onChange={onTagsChange}
         />
         <label className="travel-form__label">Past Travel? </label>
