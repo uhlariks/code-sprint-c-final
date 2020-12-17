@@ -42,8 +42,8 @@ function Travel(props) {
   if (hasHappened === true) {
     ratingMarkup = (
       <div className="travel__contents">
-        <div className="travel__input">Number of Visits: {visits}</div>
         <div className="travel__input">Review: {review !== "" ? review : "No review saved"}</div>
+        <div className="travel__input">Number of Visits: {visits}</div>
       </div>
     );
   } else {

@@ -153,7 +153,7 @@ function TravelForm(props) {
               value={visits}
               onChange={onVisitsChange}
             />
-            <label className="travel-form__label">Rating:</label>
+            <label className="travel-form__label">Rating 0-5:</label>
             <input
               className="travel-form__input"
               type="number"
