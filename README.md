@@ -18,5 +18,7 @@ The motivation for this app was to create a way to keep track of past and _futur
 - I think it would be nice to also add a filter for location perhaps based on continents or just the U.S., etc.
 - Ultimately I would love to push this project further and have the user be able to add images from their travel or even just include a picture of the location when they enter their travel.
 
+**App database sketch & screenshot**
+
 <img src="./src/images/database-sketch.png" width="300">
 <img src="./src/images/travel-journal-app-screenshot.png" width="300">
